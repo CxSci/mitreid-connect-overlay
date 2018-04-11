@@ -3,6 +3,10 @@ FROM maven:3.5-jdk-8 as builder
 
 LABEL maintainer="Justin Anderson <jander@mit.edu>"
 
+# Add curl to make healthchecks easier
+RUN apt-get update && \
+    apt-get install -y curl
+
 # Pre-download dependencies to speed up repeat builds
 COPY pom.xml /src/pom.xml
 COPY mit-cxsci-openid-connect/pom.xml /src/mit-cxsci-openid-connect/pom.xml
