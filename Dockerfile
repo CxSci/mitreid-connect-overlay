@@ -14,11 +14,7 @@ COPY mit-cxsci-openid-connect /src/mit-cxsci-openid-connect
 
 RUN mvn -s /usr/share/maven/ref/settings-docker.xml package
 
-FROM tomcat:9-jre8-slim
-
-# Add curl to make healthchecks easier
-RUN apt-get update && \
-    apt-get install -y curl
+FROM tomcat:9-jre8-alpine
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
